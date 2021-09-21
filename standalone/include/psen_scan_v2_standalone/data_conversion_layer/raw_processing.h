@@ -22,8 +22,6 @@
 #include <sstream>
 #include <vector>
 
-#include <fmt/format.h>
-
 namespace psen_scan_v2_standalone
 {
 namespace data_conversion_layer
@@ -55,8 +53,7 @@ inline void read(std::istream& is, T& data)
   is.read(reinterpret_cast<char*>(&data), sizeof(T));
   if (!is)
   {
-    throw raw_processing::StringStreamFailure(
-        fmt::format("Failure reading {} characters from input stream, could only read {}.", sizeof(T), is.gcount()));
+    throw raw_processing::StringStreamFailure("Failure reading enough characters from input stream}.");
   }
 }
 

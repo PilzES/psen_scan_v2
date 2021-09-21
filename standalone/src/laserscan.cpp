@@ -17,7 +17,7 @@
 #include <ostream>
 #include <stdexcept>
 
-#include <fmt/format.h>
+
 
 #include "psen_scan_v2_standalone/data_conversion_layer/angle_conversions.h"
 #include "psen_scan_v2_standalone/laserscan.h"
@@ -106,15 +106,7 @@ void LaserScan::setIntensities(const IntensityData& intensities)
 
 std::ostream& operator<<(std::ostream& os, const LaserScan& scan)
 {
-  os << fmt::format("LaserScan(timestamp = {} nsec, scanCounter = {}, minScanAngle = {} deg, maxScanAngle = {} deg, "
-                    "resolution = {} deg, measurements = {}, intensities = {})",
-                    scan.getTimestamp(),
-                    scan.getScanCounter(),
-                    scan.getMinScanAngle().value() / 10.,
-                    scan.getMaxScanAngle().value() / 10.,
-                    scan.getScanResolution().value() / 10.,
-                    util::formatRange(scan.getMeasurements()),
-                    util::formatRange(scan.getIntensities()));
+
   return os;
 }
 

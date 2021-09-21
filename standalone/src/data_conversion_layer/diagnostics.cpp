@@ -15,7 +15,7 @@
 
 #include <ostream>
 
-#include <fmt/format.h>
+
 
 #include "psen_scan_v2_standalone/data_conversion_layer/diagnostics.h"
 
@@ -33,14 +33,7 @@ std::ostream&
 operator<<(std::ostream& os,
            const psen_scan_v2_standalone::data_conversion_layer::monitoring_frame::diagnostic::Message& msg)
 {
-  os << fmt::format("Device: {} - {}",
-                    configuration::scanner_id_to_string.at(msg.getScannerId()),
-                    error_code_to_string.at(msg.getDiagnosticCode()));
 
-  if (isAmbiguous(msg.getDiagnosticCode()))
-  {
-    os << fmt::format(" (Byte:{} Bit:{})", msg.getErrorLocation().getByte(), msg.getErrorLocation().getBit());
-  }
 
   return os;
 }
