@@ -20,7 +20,7 @@
 #include <sstream>
 #include <vector>
 
-#include <fmt/format.h>
+#include <rosfmt/full.h>
 
 #include "psen_scan_v2_standalone/data_conversion_layer/diagnostics.h"
 #include "psen_scan_v2_standalone/data_conversion_layer/monitoring_frame_deserialization.h"

@@ -21,8 +21,8 @@
 #include <string>
 #include <vector>
 
-#include <fmt/format.h>
-#include <fmt/ostream.h>
+#include <rosfmt/full.h>
+#include <rosfmt/full.h>
 
 #include "psen_scan_v2_standalone/data_conversion_layer/diagnostics.h"
 #include "psen_scan_v2_standalone/data_conversion_layer/angle_conversions.h"

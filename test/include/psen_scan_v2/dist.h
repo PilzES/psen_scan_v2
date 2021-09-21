@@ -15,7 +15,7 @@
 #ifndef PSEN_SCAN_V2_DIST_H
 #define PSEN_SCAN_V2_DIST_H
 
-#include <fmt/format.h>
+#include <rosfmt/full.h>
 
 #include <math.h>
 #include <numeric>

@@ -17,7 +17,7 @@
 #include <ostream>
 #include <stdexcept>
 
-#include <fmt/format.h>
+#include <rosfmt/full.h>
 
 #include "psen_scan_v2_standalone/data_conversion_layer/angle_conversions.h"
 #include "psen_scan_v2_standalone/laserscan.h"

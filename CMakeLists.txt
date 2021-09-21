@@ -39,7 +39,6 @@ if(NOT Boost_FOUND)
   find_package(Boost REQUIRED COMPONENTS system)
 endif()
 find_package(console_bridge REQUIRED)
-find_package(fmt REQUIRED)
 
 catkin_package(
   CATKIN_DEPENDS
@@ -113,30 +112,18 @@ set(${PROJECT_NAME}_standalone_sources
   standalone/src/data_conversion_layer/scanner_reply_serialization_deserialization.cpp
 )
 
-add_library(
-  ${PROJECT_NAME}_standalone
-  ${${PROJECT_NAME}_standalone_sources}
-)
-
-target_link_libraries(${PROJECT_NAME}_standalone
-  ${Boost_LIBRARIES}
-  ${console_bridge_LIBRARIES}
-  fmt::fmt
-)
-target_include_directories(${PROJECT_NAME}_standalone PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-
 ###########
 ## Build ##
 ###########
 
 set(${PROJECT_NAME}_node_sources
   src/psen_scan_driver.cpp
+  ${${PROJECT_NAME}_standalone_sources}
 )
 
 add_executable(${PROJECT_NAME}_node ${${PROJECT_NAME}_node_sources})
 target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
-  ${PROJECT_NAME}_standalone
 )
 
 #############
@@ -157,7 +144,6 @@ install(DIRECTORY urdf/
 
 install(TARGETS
   ${PROJECT_NAME}_node
-  ${PROJECT_NAME}_standalone
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
