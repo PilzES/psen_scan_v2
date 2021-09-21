@@ -18,8 +18,8 @@
 
 #include <gtest/gtest.h>
 
-#include <rosfmt/full.h>
-#include <rosfmt/full.h>
+#include <fmt/format.h>
+#include <fmt/ostream.h>
 
 #include "psen_scan_v2_standalone/laserscan.h"
 

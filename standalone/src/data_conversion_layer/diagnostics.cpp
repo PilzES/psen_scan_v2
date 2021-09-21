@@ -15,7 +15,7 @@
 
 #include <ostream>
 
-#include <rosfmt/full.h>
+#include <fmt/format.h>
 
 #include "psen_scan_v2_standalone/data_conversion_layer/diagnostics.h"
 

@@ -22,7 +22,7 @@
 #include <sstream>
 #include <vector>
 
-#include <rosfmt/full.h>
+#include <fmt/format.h>
 
 namespace psen_scan_v2_standalone
 {

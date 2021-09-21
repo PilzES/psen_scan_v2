@@ -26,8 +26,8 @@
 
 #include <boost/shared_ptr.hpp>
 
-#include <rosfmt/full.h>
-#include <rosfmt/full.h>
+#include <fmt/format.h>
+#include <fmt/ostream.h>
 
 #include <gtest/gtest.h>
 
