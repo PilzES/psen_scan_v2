@@ -80,6 +80,11 @@ target_link_libraries(${PROJECT_NAME}_app
   ${PROJECT_NAME}
 )
 
+add_executable(${PROJECT_NAME}_no_monitoring main_no_monitoring.cpp)
+target_link_libraries(${PROJECT_NAME}_no_monitoring
+  ${PROJECT_NAME}
+)
+
 ###########
 ## Tests ##
 ###########
