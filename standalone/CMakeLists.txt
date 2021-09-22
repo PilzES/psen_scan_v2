@@ -85,6 +85,11 @@ target_link_libraries(${PROJECT_NAME}_no_monitoring
   ${PROJECT_NAME}
 )
 
+add_executable(${PROJECT_NAME}_verbose_times main_verbose_times.cpp)
+target_link_libraries(${PROJECT_NAME}_verbose_times
+  ${PROJECT_NAME}
+)
+
 ###########
 ## Tests ##
 ###########
