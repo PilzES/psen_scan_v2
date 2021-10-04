@@ -90,6 +90,11 @@ target_link_libraries(${PROJECT_NAME}_verbose_times
   ${PROJECT_NAME}
 )
 
+add_executable(${PROJECT_NAME}_less_verbose main_less_verbose.cpp)
+target_link_libraries(${PROJECT_NAME}_less_verbose
+  ${PROJECT_NAME}
+)
+
 ###########
 ## Tests ##
 ###########

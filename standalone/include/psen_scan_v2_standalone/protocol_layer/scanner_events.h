@@ -16,7 +16,7 @@
 #define PSEN_SCAN_V2_STANDALONE_EVENTS_H
 
 #include "psen_scan_v2_standalone/data_conversion_layer/raw_scanner_data.h"
-#include "psen_scan_v2_standalone/util/timestamp.h"
+// #include "psen_scan_v2_standalone/util/timestamp.h"
 
 namespace psen_scan_v2_standalone
 {
@@ -76,7 +76,7 @@ public:
                              const int64_t& timestamp)
     : data_(data), num_bytes_(num_bytes), timestamp_(timestamp)
   {
-    PSENSCAN_INFO("RawMonitoringFrameReceived", "timestamp: {} event: {}", timestamp, util::getCurrentTime());
+    // PSENSCAN_INFO("RawMonitoringFrameReceived", "timestamp: {} event: {}", timestamp, util::getCurrentTime());
   }
 
 public:
