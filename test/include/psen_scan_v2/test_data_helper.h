@@ -65,11 +65,11 @@ static void addUdpData(TestData& test_data, const udp_data::UdpData& udp_data)
     {
       if (udp_datum.from_theta_ == FIRST_FROM_THETA)
       {
-        it->setFirstFrameTime(secToNSec(udp_datum.timestamp_sec_));
+        it->firstFrameTime(secToNSec(udp_datum.timestamp_sec_));
       }
       if (udp_datum.from_theta_ == LAST_FROM_THETA)
       {
-        it->setLastFrameTime(secToNSec(udp_datum.timestamp_sec_));
+        it->lastFrameTime(secToNSec(udp_datum.timestamp_sec_));
       }
     }
   }
