@@ -131,7 +131,7 @@ TEST(LaserScanConversionsTest, laserScanShouldContainCorrectScanResolutionAfterC
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan({ stamped_msg }) }););
 
-  EXPECT_EQ(stamped_msg.msg_.resolution(), scan_ptr->getScanResolution()) << "Resolution incorrect in LaserScan";
+  EXPECT_EQ(stamped_msg.msg_.resolution(), scan_ptr->scanResolution()) << "Resolution incorrect in LaserScan";
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainCorrectMinMaxScanAngleAfterConversion)
@@ -146,8 +146,8 @@ TEST(LaserScanConversionsTest, laserScanShouldContainCorrectMinMaxScanAngleAfter
     stamped_msg.msg_.resolution() * (static_cast<int>(stamped_msg.msg_.measurements().size()) - 1)
   };
 
-  EXPECT_EQ(stamped_msg.msg_.fromTheta(), scan_ptr->getMinScanAngle()) << "Min scan-angle incorrect in LaserScan";
-  EXPECT_EQ(expected_max_scan_angle, scan_ptr->getMaxScanAngle()) << "Max scan-angle incorrect in LaserScan";
+  EXPECT_EQ(stamped_msg.msg_.fromTheta(), scan_ptr->minScanAngle()) << "Min scan-angle incorrect in LaserScan";
+  EXPECT_EQ(expected_max_scan_angle, scan_ptr->maxScanAngle()) << "Max scan-angle incorrect in LaserScan";
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainCorrectMeasurementsAfterConversion)
@@ -158,7 +158,7 @@ TEST(LaserScanConversionsTest, laserScanShouldContainCorrectMeasurementsAfterCon
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan({ stamped_msg }) }););
 
-  EXPECT_THAT(scan_ptr->getMeasurements(), PointwiseDoubleEq(stamped_msg.msg_.measurements()));
+  EXPECT_THAT(scan_ptr->measurements(), PointwiseDoubleEq(stamped_msg.msg_.measurements()));
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainCorrectIntensitiesAfterConversion)
@@ -169,7 +169,7 @@ TEST(LaserScanConversionsTest, laserScanShouldContainCorrectIntensitiesAfterConv
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan({ stamped_msg }) }););
 
-  EXPECT_THAT(scan_ptr->getIntensities(), PointwiseDoubleEq(stamped_msg.msg_.intensities()));
+  EXPECT_THAT(scan_ptr->intensities(), PointwiseDoubleEq(stamped_msg.msg_.intensities()));
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainCorrectScanCounterAfterConversion)
@@ -180,7 +180,7 @@ TEST(LaserScanConversionsTest, laserScanShouldContainCorrectScanCounterAfterConv
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan({ stamped_msg }) }););
 
-  EXPECT_EQ(stamped_msg.msg_.scanCounter(), scan_ptr->getScanCounter());
+  EXPECT_EQ(stamped_msg.msg_.scanCounter(), scan_ptr->scanCounter());
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainCorrectTimestampAfterConversion)
@@ -191,7 +191,7 @@ TEST(LaserScanConversionsTest, laserScanShouldContainCorrectTimestampAfterConver
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan({ stamped_msg }) }););
 
-  EXPECT_EQ(EXPECTED_TIMESTAMP_AFTER_CONVERSION, scan_ptr->getTimestamp());
+  EXPECT_EQ(EXPECTED_TIMESTAMP_AFTER_CONVERSION, scan_ptr->timestamp());
 }
 
 /////////////////////////////////////////
@@ -235,8 +235,8 @@ TEST(LaserScanConversionsTest, laserScanShouldContainAllScanInformationWhenBuild
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan(stamped_msgs) }););
 
-  EXPECT_EQ(stamped_msgs.size() * stamped_msgs[0].msg_.measurements().size(), scan_ptr->getMeasurements().size());
-  EXPECT_EQ(stamped_msgs.size() * stamped_msgs[0].msg_.intensities().size(), scan_ptr->getIntensities().size());
+  EXPECT_EQ(stamped_msgs.size() * stamped_msgs[0].msg_.measurements().size(), scan_ptr->measurements().size());
+  EXPECT_EQ(stamped_msgs.size() * stamped_msgs[0].msg_.intensities().size(), scan_ptr->intensities().size());
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainCorrectTimestampWhenBuildingWithMulitpleFrames)
@@ -245,7 +245,7 @@ TEST(LaserScanConversionsTest, laserScanShouldContainCorrectTimestampWhenBuildin
   std::unique_ptr<LaserScan> scan_ptr;
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan(stamped_msgs) }););
-  EXPECT_EQ(EXPECTED_TIMESTAMP_AFTER_CONVERSION, scan_ptr->getTimestamp());
+  EXPECT_EQ(EXPECTED_TIMESTAMP_AFTER_CONVERSION, scan_ptr->timestamp());
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainMeasurementsOrderedByThetaAngle)
@@ -261,8 +261,8 @@ TEST(LaserScanConversionsTest, laserScanShouldContainMeasurementsOrderedByThetaA
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan(stamped_msgs) }););
 
-  EXPECT_EQ(first_measurement, scan_ptr->getMeasurements().front());
-  EXPECT_EQ(last_measurement, scan_ptr->getMeasurements().back());
+  EXPECT_EQ(first_measurement, scan_ptr->measurements().front());
+  EXPECT_EQ(last_measurement, scan_ptr->measurements().back());
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainMinimalTimestamp)
@@ -273,7 +273,7 @@ TEST(LaserScanConversionsTest, laserScanShouldContainMinimalTimestamp)
   std::unique_ptr<LaserScan> scan_ptr;
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan(stamped_msgs) }););
-  EXPECT_EQ(EXPECTED_TIMESTAMP_AFTER_CONVERSION, scan_ptr->getTimestamp());
+  EXPECT_EQ(EXPECTED_TIMESTAMP_AFTER_CONVERSION, scan_ptr->timestamp());
 }
 
 TEST(LaserScanConversionsTest, laserScanShouldContainActiveZonesetOfLastMsg)
@@ -285,7 +285,7 @@ TEST(LaserScanConversionsTest, laserScanShouldContainActiveZonesetOfLastMsg)
   std::unique_ptr<LaserScan> scan_ptr;
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan(stamped_msgs) }););
-  EXPECT_EQ(4, scan_ptr->getActiveZoneset());
+  EXPECT_EQ(4, scan_ptr->activeZoneset());
 }
 
 TEST(LaserScanConversionTest, conversionShouldIgnoreEmptyFramesWhenCheckingIfFromThetasFitTogether)
@@ -322,7 +322,7 @@ TEST(LaserScanConversionsTest, conversionShouldIgnoreEmptyFramesForTimestampsCom
   ASSERT_NO_THROW(
       scan_ptr.reset(new LaserScan{ data_conversion_layer::LaserScanConverter::toLaserScan(stamped_msgs) }););
 
-  EXPECT_EQ(expected_stamp, scan_ptr->getTimestamp());
+  EXPECT_EQ(expected_stamp, scan_ptr->timestamp());
 }
 
 }  // namespace psen_scan_v2_standalone_test

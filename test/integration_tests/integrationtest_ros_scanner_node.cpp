@@ -117,7 +117,7 @@ static LaserScan createValidLaserScan(const uint8_t active_zoneset = 1)
                                                      14,
                                                      active_zoneset,
                                                      1000000000);
-  laser_scan_fake.getMeasurements().push_back(1);
+  laser_scan_fake.measurements().push_back(1);
   return laser_scan_fake;
 }
 

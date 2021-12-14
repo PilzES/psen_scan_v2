@@ -128,7 +128,7 @@ void ROSScannerNodeT<S>::laserScanCallback(const LaserScan& scan)
         laser_scan_msg.ranges.size());
     pub_scan_.publish(laser_scan_msg);
     std_msgs::UInt8 active_zoneset;
-    active_zoneset.data = scan.getActiveZoneset();
+    active_zoneset.data = scan.activeZoneset();
     pub_zone_.publish(active_zoneset);
   }
   // LCOV_EXCL_START
