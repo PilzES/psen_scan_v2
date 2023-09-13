@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>psen_scan_v2</name>
+  <name>psen_scan2</name>
   <version>0.20.0</version>
   <description>ROS support for the Pilz laser scanner</description>
 

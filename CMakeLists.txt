@@ -14,7 +14,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 cmake_minimum_required(VERSION 3.5)
-project(psen_scan_v2)
+project(psen_scan2)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
